@@ -1,0 +1,27 @@
+{% extends 'prayers/layout.html' %}
+
+{% block title %}Profile: {{ user.title }} {{ user.first_name }}{% endblock %}
+
+{% block contents %}
+<div class='features'>
+    <h1>Profile</h1>    
+    <img src="{{ object.userpic.url }}" alt="{{ object.full_address }}" height="200"><br><br>
+    <h2> {{ object.full_address }} </h2>
+    <p>
+        {{ object.about|linebreaksbr }} <br>        
+        {% if object.is_literate %}
+            {{ object.title }} {{ object.first_name }} is literate.
+        {% else %}
+            {{ object.title }} {{ object.first_name }} is illiterate.
+        {% endif %} <br>
+        {% if object.is_ordained %}
+            {{ object.title }} {{ object.first_name }} is an ordained priest.
+        {% else %}
+            {{ object.title }} {{ object.first_name }} is not ordained into priesthood.
+        {% endif %} <br>       
+    </p>        
+    {% if user.id == object.id %}
+        <a href="{% url 'update' %}"><button class="btn btn-warning">Update profile</button></a>
+    {% endif %}
+</div>
+{% endblock %}

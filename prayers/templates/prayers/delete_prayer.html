@@ -1,0 +1,22 @@
+{% extends 'prayers/layout.html' %}
+
+{% block title %}Delete thy prayer{% endblock %}
+
+{% block contents %}
+<div class='features'>
+    <h1>Anathema!</h1>
+    {% if prayer.poster.id == user.id %}
+        <form method="post" action="">
+            {% csrf_token %}
+            <h2>Prayer: {{ prayer.titulum }}</h2>
+            <h2>Posted by: {{ prayer.poster.title }} {{ prayer.poster.first_name }}</h2> 
+            <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-fire"></span> Burn the heretical text! <span class="glyphicon glyphicon-fire"></span></button>
+        </form>    
+    {% else %}
+        <h1>Vade retro Satana</h1>
+        <h3>Thou hast no right to delete this holy prayer!</h3>
+        <br><br>
+        <h1>Begone</h1>
+    {% endif %}
+</div>
+{% endblock %}

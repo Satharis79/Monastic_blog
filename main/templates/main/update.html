@@ -1,0 +1,14 @@
+{% extends 'prayers/layout.html' %}
+
+{% block title %}Update profile{% endblock %}
+
+{% block contents %}
+<div class='features'>
+    <h1>Update profile</h1>
+</div>
+    <form method="post" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+        {{ form.as_p }}    
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>    
+{% endblock %}

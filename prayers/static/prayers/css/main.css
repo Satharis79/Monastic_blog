@@ -1,0 +1,105 @@
+body {
+
+    background: rgb(78, 77, 77);
+    text-align: center;
+
+
+}
+
+h1, h2, h3 {    
+    font-family: 'UnifrakturMaguntia', cursive;
+}
+
+aside {
+    float: left;
+    background: #181818;
+    width: 300px;
+    padding: 2.5%;
+    height: 100vh;
+    color: white;
+    border: 5px solid #4d4d4d;    
+}
+
+aside img {
+    width: 80%;    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+aside .face {
+    font-size: 40px;
+    margin-left: 10px;
+    font-weight: bold; 
+    text-align: left;   
+}
+
+aside h3 {
+    margin-top: 15px;
+}
+
+aside ul {list-style: none}
+
+aside ul li, aside ul a {
+    color: white;
+    margin-top: 10px;    
+    display: block;
+    transition: all .6s ease;
+    text-decoration: none;
+}
+
+aside ul li:hover, aside ul a:hover {
+    color: #7cf596;
+    text-decoration: none;    
+    transform: scale(1.05);
+}
+
+main .features {
+    float: left;
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+    width: 75%;    
+}
+
+main .features table, th, td {
+  border: 1px solid white;
+  border-collapse: separate;  
+  padding: 15px;
+  text-align: center;  
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main .features a {
+    color: #7cf596;                
+}
+
+main .feature:hover, main .feature a:hover {
+    color: #7cf596;        
+}
+
+
+aside .welcome, aside .welcome a {    
+    color: white;        
+    text-decoration: none;
+}
+
+aside .welcome a:hover {
+    color: #7cf596;
+    text-decoration: none;
+}    
+
+main .features h1 {font-size: 50px;}
+main .features p {max-width: 80%; margin: 20px auto;}
+main .tytlo h1 {
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    background: #181818;
+}
+
+form {    
+    display: inline-block;
+    margin-top: 50px;
+}

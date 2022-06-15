@@ -1,0 +1,33 @@
+{% extends 'prayers/layout.html' %}
+
+{% block title %}Monastery{% endblock %}
+
+{% block contents %}
+<div class='features'>
+    <h1>List of monks</h1>    
+    <br>
+    <table>    
+    {% for monk in monks %}
+        <tr>
+            <td><strong>{{ monk.full_address }}</strong></td>
+            <td>
+                {% if monk.is_literate %}
+                    Literate
+                {% else %}
+                    Illiterate
+                {% endif %} 
+            </td>
+            <td>
+                {% if monk.is_ordained %}
+                    Ordained priest
+                {% else %}
+                    Humble monk
+                {% endif %} 
+            </td>
+            <td> <img src="{{ monk.userpic.url }}" height="40"> </td>
+            <td><a href=" {% url 'profile' pk=monk.id %} "><button class="btn btn-success">View profile</button></a></td>
+        </tr>        
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}
