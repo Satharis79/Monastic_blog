@@ -93,4 +93,4 @@ def add_comment(request, pk):
             form = AddCommentFormAuth()
         else:
             form = AddCommentFormUnauth()
-        return render(request, 'prayers/add_comment.html', {'form': form})
+        return render(request, 'prayers/add_comment.html', {'form': form, 'prayer':prayer})
