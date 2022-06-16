@@ -17,15 +17,6 @@ class Prayer(models.Model):
     def count_amens(self):
         return self.amens.count()
 
-    def amenners_list(self):
-        amenners_list = []            
-        monks_list = Monk.objects.order_by('id')
-        for monk in monks_list:
-            if self.amens.filter(id=monk.id).exists():
-                amenners_list.append(monk.id)
-
-        return amenners_list
-
 class Comment(models.Model):
     prayer = models.ForeignKey(Prayer, related_name="comments", on_delete=models.CASCADE)
     name = models.CharField(max_length=200, default='Incognito')

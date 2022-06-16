@@ -17,7 +17,7 @@
         
         {% if user.is_authenticated %}            
             
-            {% if user.id in prayer.amenners_list %}
+            {% if prayer.id in amenned_prayers %}
             
                 <a href=" {% url 'amen' pk=prayer.id %} "><button class="btn btn-primary"><span class="fas fa-ankh"></span> Unsay "AMEN"</button></a>
             

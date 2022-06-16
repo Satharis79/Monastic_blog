@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
-from .models import Prayer, Comment
+from .models import Prayer
 from .forms import AddPrayerForm, AddCommentFormUnauth, AddCommentFormAuth
 from django.utils import timezone
 from django.views.generic import DeleteView
@@ -10,10 +10,20 @@ class DeletePrayerView(DeleteView):
     template_name = 'prayers/delete_prayer.html'
 
 
-def prayer_list(request):
-    #comments = Comment.objects.order_by('publicatio')    
+def prayer_list(request):    
     prayers = Prayer.objects.order_by('publicatio')    
-    context = {'prayers':prayers}    
+    context = {
+            'prayers':prayers,
+            'amenned_prayers':[],
+        }    
+    
+    if request.user.is_authenticated:
+        user_id = request.user.id
+        context['amenned_prayers'] = []
+        for prayer in prayers:
+            if prayer.amens.filter(id=user_id).exists():
+                context['amenned_prayers'].append(prayer.id)    
+    
     return render(request,'prayers/prayers.html', context)
 
 def add_prayer(request):
