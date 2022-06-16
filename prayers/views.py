@@ -18,8 +18,7 @@ def prayer_list(request):
         }    
     
     if request.user.is_authenticated:
-        user_id = request.user.id
-        context['amenned_prayers'] = []
+        user_id = request.user.id        
         for prayer in prayers:
             if prayer.amens.filter(id=user_id).exists():
                 context['amenned_prayers'].append(prayer.id)    
