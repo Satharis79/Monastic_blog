@@ -11,7 +11,7 @@ class MonkView(DetailView):
 
 class MonkUpdateView(UpdateView):
     model = Monk
-    fields = ['first_name', 'city_of_origin', 'userpic', 'is_literate', 'is_ordained', 'about']
+    fields = ['first_name', 'city_of_origin', 'title', 'userpic', 'is_literate', 'is_ordained', 'about']
     template_name = 'main/update.html'
 
     def get_object(self):
