@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from .models import Prayer
-from .forms import AddPrayerForm, AddCommentFormUnauth, AddCommentFormAuth
+from .forms import AddPrayerForm, AddCommentForm
 from django.utils import timezone
 from django.views.generic import DeleteView
 
@@ -67,29 +67,14 @@ def handle_amen(request, pk):
 
 def add_comment(request, pk):
     prayer = get_object_or_404(Prayer, pk=pk)
-    if request.method == "POST":
-        if request.user.is_authenticated:
-            form = AddCommentFormAuth(request.POST)
-            if form.is_valid:
-                comment = form.save(commit=False)
-                namme = f'{request.user.title} {request.user.first_name} of {request.user.city_of_origin}' 
-                print(namme)
-                comment.name = namme
-                comment.prayer = prayer
-                comment.publicatio = timezone.now()
-                comment.save()
-                return redirect('home')
-        else:        
-            form = AddCommentFormUnauth(request.POST)
-            if form.is_valid:
-                comment = form.save(commit=False)                
-                comment.prayer = prayer
-                comment.publicatio = timezone.now()
-                comment.save()
-                return redirect('home')
+    form = AddCommentForm    
+    if request.method == "POST":                        
+        form = AddCommentForm(request.POST)
+        if form.is_valid:
+            comment = form.save(commit=False)            
+            comment.prayer = prayer
+            comment.publicatio = timezone.now()
+            comment.save()
+            return redirect('home')        
     else:
-        if request.user.is_authenticated:
-            form = AddCommentFormAuth()
-        else:
-            form = AddCommentFormUnauth()
         return render(request, 'prayers/add_comment.html', {'form': form, 'prayer':prayer})

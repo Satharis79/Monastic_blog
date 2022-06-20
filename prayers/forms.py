@@ -7,12 +7,7 @@ class AddPrayerForm(ModelForm):
         model = Prayer
         fields = ['titulum', 'oratio']
 
-class AddCommentFormUnauth(ModelForm):
+class AddCommentForm(ModelForm):
     class Meta:
         model = Comment
         fields = ['name', 'text']
-
-class AddCommentFormAuth(ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['text']
