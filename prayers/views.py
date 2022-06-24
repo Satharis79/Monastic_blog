@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from .models import Prayer
 from .forms import AddPrayerForm, AddCommentForm
-from django.utils import timezone
+from datetime import datetime
 from django.views.generic import DeleteView
 
 class DeletePrayerView(DeleteView):
@@ -31,7 +31,7 @@ def add_prayer(request):
         if form.is_valid:
             prayer = form.save(commit=False)
             prayer.poster = request.user
-            prayer.publicatio = timezone.now()
+            prayer.publicatio = datetime.now()
             prayer.save()
             return redirect('home')
     else:
@@ -46,7 +46,7 @@ def prayer_edit(request, pk):
             if form.is_valid:
                 prayer = form.save(commit=False)
                 prayer.poster = request.user
-                prayer.publicatio = timezone.now()
+                prayer.publicatio = datetime.now()
                 prayer.save()
                 return redirect('home')
         else:
@@ -73,7 +73,7 @@ def add_comment(request, pk):
         if form.is_valid:
             comment = form.save(commit=False)            
             comment.prayer = prayer
-            comment.publicatio = timezone.now()
+            comment.publicatio = datetime.now()
             comment.save()
             return redirect('home')        
     else:

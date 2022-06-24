@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from django.conf import settings
 from main.models import Monk
 
@@ -7,7 +6,7 @@ class Prayer(models.Model):
     poster = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     titulum = models.CharField(max_length=255)
     oratio = models.TextField()
-    creatio = models.DateTimeField(default=timezone.now)
+    creatio = models.DateTimeField(auto_now_add=True)
     publicatio = models.DateTimeField(blank=True, null=True)
     amens = models.ManyToManyField(to=Monk, related_name="amenned_prayers")
 
